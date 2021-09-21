@@ -12,7 +12,6 @@ class SearchForm extends Component {
   }
 
   handleSubmit = (event) => {
-    console.log("Fetching data!");
     if (this.state.queryString === "") {
       return;
     };
