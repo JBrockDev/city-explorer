@@ -26,42 +26,42 @@ Jonathan Brock && Harvey Lucas
 
 ## Features Day 1
 
-- [x] Number and name of feature:
+- [x] Number and name of feature: Set Up React Repo & API Key
 
-      Estimate of time needed to complete: 
+      Estimate of time needed to complete: 10 minutes
 
-      Start time: 
+      Start time: 5:15pm
 
-      Finish time: 
+      Finish time: 5:25pm
 
-      Actual time needed to complete: 
+      Actual time needed to complete: 10 minutes
 
-- [ ] Number and name of feature: Clone & Deploy To Netlify
+- [x] Number and name of feature: Locations
 
-      Estimate of time needed to complete: 
+      Estimate of time needed to complete: 20 minutes
 
-      Start time: 
+      Start time: 6:15pm
 
-      Finish time: 
+      Finish time: 6:20pm
 
-      Actual time needed to complete: 
+      Actual time needed to complete: 5 minutes
 
-- [ ] Number and name of feature: Clone & Deploy To Netlify
+- [x] Number and name of feature: Map
 
-      Estimate of time needed to complete: 
+      Estimate of time needed to complete: 20 minutes
 
-      Start time: 
+      Start time: 6:30pm
 
-      Finish time: 
+      Finish time: 6:41pm
 
-      Actual time needed to complete: 
+      Actual time needed to complete: 11 minutes
 
-- [ ] Number and name of feature: Clone & Deploy To Netlify
+- [x] Number and name of feature: Errors
 
-      Estimate of time needed to complete: 
+      Estimate of time needed to complete: 5 minutes
 
-      Start time: 
+      Start time: 9:55pm
 
-      Finish time: 
+      Finish time: 10:00pm
 
-      Actual time needed to complete: 
+      Actual time needed to complete: 5 minutes
