@@ -18,6 +18,10 @@ class Main extends Component {
   }
 
   getCityInfo = async (queryString, eu, us) => {
+<<<<<<< HEAD
+=======
+    console.log(queryString);
+>>>>>>> cb89790 (completed all cards, edited readme)
     this.setState({map: undefined, error: ""});
     try {
       let cityResult;
@@ -37,18 +41,31 @@ class Main extends Component {
         }
       }
       if (cityResult) {
+<<<<<<< HEAD
+=======
+        console.log(cityResult);
+>>>>>>> cb89790 (completed all cards, edited readme)
         this.changeLocation(cityResult);
       } else {
         this.setState({error: "Please enter a valid city."});
       }
     } catch(error) {
+<<<<<<< HEAD
       this.setState({error, location: {}, map: false});
+=======
+      this.setState({error});
+>>>>>>> cb89790 (completed all cards, edited readme)
     }
   }
 
   getCityMap = async () => {
     const url = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.location.lat},${this.state.location.lon}&zoom=13`;
     const response = await axios.get(url);
+<<<<<<< HEAD
+=======
+    console.log(response);
+    console.log(response.config.url);
+>>>>>>> cb89790 (completed all cards, edited readme)
     this.setState({map: response.config.url});
   }
 

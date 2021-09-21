@@ -1,6 +1,10 @@
 import { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+<<<<<<< HEAD
+=======
+import axios from "axios";
+>>>>>>> cb89790 (completed all cards, edited readme)
 
 class SearchForm extends Component {
   constructor(props) {
@@ -12,6 +16,10 @@ class SearchForm extends Component {
   }
 
   handleSubmit = (event) => {
+<<<<<<< HEAD
+=======
+    console.log("Fetching data!");
+>>>>>>> cb89790 (completed all cards, edited readme)
     if (this.state.queryString === "") {
       return;
     };
