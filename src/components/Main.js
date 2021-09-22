@@ -68,15 +68,20 @@ class Main extends Component {
   };
 
   getForecast = async () => {
-    const url = `http://localhost:3333/weather?searchQuery=${this.state.searchQuery}&lon=${this.state.location.lon}&lat=${this.state.location.lat}`;
+    const url = `${process.env.REACT_APP_WEATHER_URL}/weather?searchQuery=${this.state.searchQuery}&lon=${this.state.location.lon}&lat=${this.state.location.lat}`;
+    console.log(url);
     try {
       const response = await axios.get(url);
       this.setState({ forecast: response.data },);
     } catch (error) {
-      this.handleApiError(
-        error.response.status,
-        error.response.data
-      );
+      if (error.response) {
+        this.handleApiError(
+          error.response.status,
+          error.response.data
+        );
+      } else {
+        this.handleApiError(500, "Unhandled error Forecast GET");
+      }
     }
   };
 
