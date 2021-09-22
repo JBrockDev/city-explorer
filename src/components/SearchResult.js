@@ -6,11 +6,11 @@ class SearchResult extends Component {
     return (
       <>
         {this.props.location.place_id && 
-          <City location={this.props.location} map={this.props.map} />
+          <City location={this.props.location} map={this.props.map} forecast={this.props.forecast} />
         }
       </>
     )
   }
 }
 
-export default SearchResult;
+export default SearchResult; 

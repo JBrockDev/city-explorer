@@ -1,7 +1,7 @@
-import { Component } from 'react';
-import SearchForm from './SearchForm';
-import SearchResult from './SearchResult';
-import Error from './Error'
+import { Component } from "react";
+import SearchForm from "./SearchForm";
+import SearchResult from "./SearchResult";
+import Error from "./Error";
 import axios from "axios";
 
 class Main extends Component {
@@ -9,74 +9,95 @@ class Main extends Component {
     super(props);
     this.state = {
       location: {},
+      forecast: [],
       error: "",
-    }
+      searchQuery: "",
+    };
   }
+
+  handleApiError = (errorCode, errorMessage) => {
+    this.setState({
+      error: `Error ${errorCode}: ${errorMessage}`,
+      location: {},
+      map: null,
+      forecast: [],
+    });
+  };
+
+  changeSearchQuery = (searchQuery) => {
+    this.setState({ searchQuery });
+  };
 
   changeLocation = (location) => {
-    this.setState({location}, this.getCityMap);
-  }
+    this.setState({ location }, this.getAllCityInfo);
+  };
 
-  getCityInfo = async (queryString, eu, us) => {
-<<<<<<< HEAD
-=======
-    console.log(queryString);
->>>>>>> cb89790 (completed all cards, edited readme)
-    this.setState({map: undefined, error: ""});
-    try {
-      let cityResult;
-      let neitherRegionChecked = !us && !eu;
-      if (us === true || neitherRegionChecked) {
-        const usUrl = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${queryString}&format=json`;
-        const usResponse = await axios.get(usUrl);
-        if (usResponse.data) {
-          cityResult = usResponse.data[0];
-        }
-      }
-      if (eu === true) {
-        const euUrl = `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${queryString}&format=json`;
-        const euResponse = await axios.get(euUrl);
-        if (euResponse.data) {
-          cityResult = euResponse.data[0];
-        }
-      }
-      if (cityResult) {
-<<<<<<< HEAD
-=======
-        console.log(cityResult);
->>>>>>> cb89790 (completed all cards, edited readme)
-        this.changeLocation(cityResult);
-      } else {
-        this.setState({error: "Please enter a valid city."});
-      }
-    } catch(error) {
-<<<<<<< HEAD
-      this.setState({error, location: {}, map: false});
-=======
-      this.setState({error});
->>>>>>> cb89790 (completed all cards, edited readme)
+  getCityInfo = async () => {
+    this.setState({ map: undefined, error: "" });
+    let cityResult;
+    let locationResponse = await this.getLocationData();
+    if (locationResponse) {
+      cityResult = locationResponse.data[0];
     }
-  }
+    if (cityResult) {
+      this.changeLocation(cityResult);
+    }
+    this.setState({ searchQuery: "" });
+  };
 
-  getCityMap = async () => {
-    const url = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.location.lat},${this.state.location.lon}&zoom=13`;
-    const response = await axios.get(url);
-<<<<<<< HEAD
-=======
-    console.log(response);
-    console.log(response.config.url);
->>>>>>> cb89790 (completed all cards, edited readme)
-    this.setState({map: response.config.url});
-  }
+  getLocationData = async () => {
+    const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.searchQuery}&format=json`;
+    try {
+      const response = await axios.get(url);
+      return response;
+    } catch {
+      this.handleApiError(
+        500,
+        "There was an issue with the locationiq API call. :: Try another city or try again later."
+      );
+    }
+  };
+
+  getAllCityInfo = async () => {
+    this.getForecast();
+    this.setState(
+      {
+        map: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.location.lat},${this.state.location.lon}&zoom=13`,
+      }
+    );
+  };
+
+  getForecast = async () => {
+    const url = `http://localhost:3333/weather?searchQuery=${this.state.searchQuery}&lon=${this.state.location.lon}&lat=${this.state.location.lat}`;
+    try {
+      const response = await axios.get(url);
+      this.setState({ forecast: response.data },);
+    } catch (error) {
+      this.handleApiError(
+        error.response.status,
+        error.response.data
+      );
+    }
+  };
 
   render() {
     return (
       <>
-        <SearchForm getCityInfo={(queryString, eu, us) => this.getCityInfo(queryString, eu, us)} />
+        <SearchForm
+          getCityInfo={this.getCityInfo}
+          searchQuery={this.state.searchQuery}
+          changeSearchQuery={(searchQuery) =>
+            this.changeSearchQuery(searchQuery)
+          }
+        />
         {this.state.error && <Error error={this.state.error} />}
-        <SearchResult location={this.state.location} map={this.state.map} />
+        <SearchResult
+          location={this.state.location}
+          map={this.state.map}
+          forecast={this.state.forecast}
+        />
       </>
-    )
+    );
   }
 }
 
