@@ -22,7 +22,11 @@ Harvey Lucas - Lab 06 Partner Process Drawing partner
 
 ## Lab 06 - Partner Process Drawing
 Jonathan Brock && Harvey Lucas
-![] [https://cdn.discordapp.com/attachments/885714386889613365/889593958219513886/unknown.png]
+![][https://cdn.discordapp.com/attachments/885714386889613365/889593958219513886/unknown.png]
+
+## Lab 07 - Partner Process Drawing
+Jonathan Brock && Cameron Walden
+![][https://cdn.discordapp.com/attachments/885714386889613365/889972319143997440/unknown.png]
 
 ## Features Day 1
 
