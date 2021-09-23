@@ -33,7 +33,7 @@ class Main extends Component {
   };
 
   getCityInfo = async () => {
-    this.setState({ map: undefined, error: "" });
+    this.setState({ map: undefined, forecast: [], error: "" });
     let cityResult;
     let locationResponse = await this.getLocationData();
     if (locationResponse) {
