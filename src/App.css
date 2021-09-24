@@ -46,3 +46,21 @@ body {
   border-right: 3px solid white;
   border-left: 3px solid white;
 } 
+
+.carousel {
+  background-color: teal;
+  color: white;
+}
+
+.nav-link {
+  color: white;
+}
+
+.poster-image {
+  width: 220px;
+}
+
+.movies {
+  margin-top: 20px;
+  font-size: 1.25rem;
+}

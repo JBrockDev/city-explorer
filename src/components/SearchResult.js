@@ -10,6 +10,7 @@ class SearchResult extends Component {
             location={this.props.location}
             map={this.props.map}
             forecast={this.props.forecast}
+            movies={this.props.movies}
           />
         )}
       </>
