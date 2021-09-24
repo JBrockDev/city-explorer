@@ -10,6 +10,7 @@ class Main extends Component {
     this.state = {
       location: {},
       forecast: [],
+      movies: [],
       error: "",
       searchQuery: "",
     };
@@ -60,6 +61,7 @@ class Main extends Component {
 
   getAllCityInfo = async () => {
     this.getForecast();
+    this.getMovies();
     this.setState(
       {
         map: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${this.state.location.lat},${this.state.location.lon}&zoom=13`,
@@ -69,7 +71,6 @@ class Main extends Component {
 
   getForecast = async () => {
     const url = `${process.env.REACT_APP_WEATHER_URL}/weather?searchQuery=${this.state.searchQuery}&lon=${this.state.location.lon}&lat=${this.state.location.lat}`;
-    console.log(url);
     try {
       const response = await axios.get(url);
       this.setState({ forecast: response.data },);
@@ -84,6 +85,23 @@ class Main extends Component {
       }
     }
   };
+
+  getMovies = async () => {
+    const url = `${process.env.REACT_APP_WEATHER_URL}/movies?searchQuery=${this.state.searchQuery}`;
+    try {
+      const response = await axios.get(url);
+      this.setState({ movies: response.data }, x => console.log(this.state.movies));
+    } catch (error) {
+      if (error.response) {
+        this.handleApiError(
+          error.response.status,
+          error.response.data
+        );
+      } else {
+        this.handleApiError(500, "Unhandled error Movies GET");
+      }
+    }
+  }
 
   render() {
     return (
@@ -100,6 +118,7 @@ class Main extends Component {
           location={this.state.location}
           map={this.state.map}
           forecast={this.state.forecast}
+          movies={this.state.movies}
         />
       </>
     );

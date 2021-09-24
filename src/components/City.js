@@ -1,6 +1,7 @@
 import { Component } from "react";
 import Card from "react-bootstrap/Card";
 import Weather from "./Weather";
+import Movies from "./Movies";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -8,7 +9,7 @@ class City extends Component {
   render() {
     return (
       <>
-        <Row xs={1} md={2} className="g-4">
+        <Row xs={1} md={3} className="g-4">
           <Col>
             <Card style={{ width: "20rem" }}>
               <Card.Body>
@@ -32,7 +33,17 @@ class City extends Component {
               </Card.Body>
             </Card>
           </Col>
+          
+          <Col>
+            <Card style={{ width: "20rem" }}>
+              <Card.Title class="movies">Movies Related To Location</Card.Title>
+              <Card.Body>
+                <Movies movies={this.props.movies} />
+              </Card.Body>
+            </Card>
+          </Col>
         </Row>
+        
       </>
     );
   }
