@@ -18,7 +18,7 @@ class Movie extends Component {
       <>
         <div>{this.props.movie.title}</div>
         {/* not every movie has a poster image returned */}
-        { this.props.movie.image_url && <div><img class="poster-image" alt="movie-image" src={"https://www.themoviedb.org/t/p/w300_and_h450_bestv2" + this.props.movie.image_url}></img></div>}
+        { this.props.movie.image_url && <div><img class="poster-image" alt="movie poster" src={"https://www.themoviedb.org/t/p/w300_and_h450_bestv2" + this.props.movie.image_url}></img></div>}
         <div>Released: {this.format(this.props.movie.released_on)}</div>
         <div>Total Votes: {this.props.movie.total_votes}</div>
         <div>Average Votes: {this.props.movie.average_votes}</div>
